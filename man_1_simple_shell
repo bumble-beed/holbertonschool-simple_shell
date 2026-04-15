@@ -1,0 +1,35 @@
+.TH HSH 1 "15th April 2026" "1.0" "Simple Shell Man Page"
+.sp
+.SH NAME
+hsh \- simple UNIX command interpreter
+.SH SYNOPSIS
+.B hsh
+[\fIcommand\fR]
+.br
+.B sh
+[\fIcommand\fR]
+.SH DESCRIPTION
+hsh is a simple UNIX command line interpreter that was created in the Gates of Hell for a project in C - Simple Shell.
+.PP
+Interactive mode:
+.RS
+$ ./hsh
+.br
+($) command
+.RE
+Non-interactive mode:
+.RS
+$ echo "command"| ./hsh
+.RE
+.SH BUILTINS
+.B exit
+.RS
+Exits the shell
+.RE
+.B env
+.RS
+Print current environment
+.RE
+.SH AUTHORS
+Shirleen Asre <shirleen.workstuff@gmail.com>
+Sean Sabino <seanandreisabino@gmail.com> 
