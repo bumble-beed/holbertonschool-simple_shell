@@ -1,11 +1,11 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * main - entry point of the simple shell
- * Return: Always 0
- */
-
-int main(void)
+ * main entry point
+ *
+ * while to create a loop 
+ **/
+int main(...) {...}
 {
 	while (1)
 	{
