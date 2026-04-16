@@ -2,9 +2,6 @@
 
 /**
  * main - entry point of the simple shell
- * @ac: argument count
- * @av: argument vector
- *
  * Return: Always 0
  */
 
