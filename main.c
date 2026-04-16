@@ -1,10 +1,13 @@
 #include <stdio.h>
 
 /**
- * main entry point
+ * main - entry point of the simple shell
+ * @ac: argument count
+ * @av: argument vector
  *
- * while to create a loop 
- **/
+ * Return: Always 0
+ */
+
 int main(void)
 {
 	while (1)
