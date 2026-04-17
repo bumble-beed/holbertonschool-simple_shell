@@ -37,6 +37,26 @@ int main(int ac, char **av, char **env)
 		if (line[nread - 1] == '\n')
 			line[nread - 1] = '\0';
 
+			{
+            int j = 0;
+            while (line[j] != '\0')
+                j++;
+            j--; /* Go to the last character before the null terminator */
+            while (j >= 0 && line[j] == ' ')
+            {
+                line[j] = '\0';
+                j--;
+            }
+        }
+
+        /* Skip leading spaces */
+        {
+            char *start = line;
+            while (*start == ' ')
+                start++;
+            argv[0] = start;
+        }
+
 		/* 4. Create a clone (The Fork) */
 		child_pid = fork();
 		if (child_pid == -1)
