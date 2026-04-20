@@ -7,21 +7,21 @@
  **/
 int main(int ac, char **av, char **env)
 {
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t nread;
-	pid_t child_pid;
-	char *argv[] = {NULL, NULL};
-	char *start;
-	int j;
+	char *line = NULL; //user input stored
+	size_t len = 0; //size of buffer
+	ssize_t nread; //number of characters stored
+	pid_t child_pid; //store processID
+	char *argv[] = {NULL, NULL}; //array of 2 NULLS
+	char *start; //pointer to beginning of command
+	int j; //counter for trimming trailing space
 
 	(void)ac;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("($) ");
-
+			print_prompt();
+		/*waits for user to type something in and hit enter*/
 		nread = getline(&line, &len, stdin);
 		if (nread == -1)
 		{
