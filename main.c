@@ -11,7 +11,7 @@ int main(int ac, char **av, char **env)
 	size_t len = 0;
 	ssize_t nread;
 	pid_t child_pid;
-	char *argv[] = {NULL, NULL};
+	char *argv[MAX_ARGS];
 	char *start;
 	int j;
 
@@ -53,7 +53,13 @@ int main(int ac, char **av, char **env)
 		/* If the line was only spaces, don't try to execute */
 		if (*start == '\0')
 			continue;
-
+		i = 0;
+		argv[i] = strtok(start, " ");
+		while (argv[i] != NULL)
+		{
+			i++;
+			argv[i] = strtok(NULL, " ");
+		}
 		child_pid = fork();
 		if (child_pid == -1)
 		{
@@ -65,7 +71,6 @@ int main(int ac, char **av, char **env)
 		if (child_pid == 0)
 		{
 			/* Use 'start' (the cleaned path), not 'line' */
-			argv[0] = start;
 			if (execve(argv[0], argv, env) == -1)
 			{
 				perror(av[0]);
