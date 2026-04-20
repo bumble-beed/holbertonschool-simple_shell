@@ -7,6 +7,8 @@
 #include <sys/wait.h>
 #include <string.h>
 
+#define MAX_ARGS 64
+
 extern char **environ;
 /**
  * Description: Inherited from the parent process; used to access
