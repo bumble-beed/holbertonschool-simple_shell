@@ -15,23 +15,21 @@ This project is a group project done for Holberton School to build a simple UNIX
 Compiled on Ubuntu 20.04 LTS with gcc using `-Wall -Werror -Wextra -pedantic -std=gnu89`
 
 ### Functions and use cases
-==shell.c==
+_shell.c_
 - `print_prompt` — prints `($)`  to the terminal so the user knows to type
 - `trim_line` — cleans up the input by removing leading and trailing spaces and the newline at the end
-- `split_line` — splits the cleaned input into an array of words using strtok e.g. "ls /var" becomes ["ls", "/var", NULL]
-- `print_error` — prints an error message in the correct format using the program name and line number e.g. ./hsh: 1: ls: not found
+- `split_line` — splits the cleaned input into an array of words using `strtok` e.g. `"ls /var"` becomes `["ls", "/var", NULL]`
+- `print_error` — prints an error message in the correct format using the program name and line number e.g. `./hsh: 1: ls: not found`
 
-path.c
-get_env — searches through environ to find a variable and return its value e.g. get_env("PATH") returns the PATH string
-find_path — uses get_env to get PATH, splits it by :, checks each directory for the command, returns the full path if found
+_path.c_
+- `get_env` — searches through `environ` to find a variable and return its value e.g. get_env("PATH") returns the PATH string
+- `find_path` — uses `get_env` to get PATH, splits it by `:`, checks each directory for the command, returns the full path if found
 
-builtins.c
-
-handle_builtin — checks if the command is a builtin like exit or env and handles it without forking
+_builtins.c_
+- `handle_builtin` — checks if the command is a builtin like exit or env and handles it without forking
 
 main.c
-
-execute_command — handles the fork, calls find_path to get the full path, runs execve in the child, waits in the parent
+- `execute_command` — handles the fork, calls `find_path` to get the full path, runs execve in the child, waits in the parent
 
 ##### List of allowed functions and system calls+
 | Function | Manual |
