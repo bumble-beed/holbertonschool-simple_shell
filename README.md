@@ -3,14 +3,14 @@
 ## Description
 
 A simple UNIX command line interpreter built as a project for Holberton School.
-The shell supports the following features:
+The shell currently supports:
 
-* Displays a prompt and waits for the user to enter a command
-* Executes commands with arguments
-* Searches the PATH to locate executables
-* Handles errors and prints informative messages when a command is not found
-* Handles end of file (Ctrl + D) to exit cleanly
-* Works in both interactive and non-interactive mode
+* Displaying a prompt and waiting for the user to enter a command
+* Executing commands passed as a direct path (e.g. `/bin/ls`)
+* Executing commands with arguments
+* Handling errors when a command cannot be run
+* Handling end of file (Ctrl + D) to exit cleanly
+* Running in both interactive and non-interactive mode
 
 Written by Shirleen Asre and Sean Sabino
 
@@ -41,9 +41,9 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 
 ### main.h
 
-The header file included by every other file in the project. It holds all the standard library includes and function prototypes so each file knows what exists across the project.
+The header file included by every other file in the project. Holds all standard library includes and function prototypes so that each file knows what exists across the codebase.
 
-It also declares:
+Also declares:
 
 ```c
 extern char **environ
@@ -53,39 +53,47 @@ which gives the program access to the environment variable list inherited from t
 
 ### main.c
 
-The entry point of the shell. Contains `main()` and the core loop that keeps the shell running.
+The entry point and core of the shell. Contains `main()` and the loop that keeps it running.
 
-On each iteration it:
+On each iteration:
 1. Prints the prompt if running interactively
-2. Reads a line of input using `getline`
-3. Strips the newline and cleans up any extra whitespace
-4. Splits the input into tokens (command and arguments)
-5. Forks a child process to run the command
+2. Reads a line of input with `getline`
+3. Strips the trailing newline and trims extra whitespace
+4. Splits the input into an argument array using `strtok`
+5. Forks a child process to run the command via `execve`
 6. Waits for the child to finish before looping back
 
-If `getline` returns -1 (Ctrl + D), the shell exits cleanly.
+Commands must currently be given as a full path (e.g. `/bin/ls`). If `getline` returns -1, the shell exits cleanly.
 
 ### shell.c
 
-Contains `print_prompt()`, which writes the shell prompt to the terminal:
+Contains `print_prompt()`, which prints the prompt:
 
 ```
 ($)
 ```
 
-`fflush` is called immediately after to make sure the prompt appears before `getline` blocks waiting for input.
+`fflush` is called straight after to ensure the prompt displays before the program pauses to wait for input.
 
 ### path.c
 
-Handles finding where a command lives on the system.
+Contains two functions for resolving command paths, written in preparation for PATH handling:
 
-`get_env` loops through `environ` to find a variable by name and return its value. For example, calling `get_env("PATH")` returns something like:
+`get_env` searches through `environ` to find a variable by name and return its value. For example:
+
+```
+get_env("PATH")
+```
+
+would return something like:
 
 ```
 /usr/local/sbin:/usr/local/bin:/usr/bin:/bin
 ```
 
-`find_path` takes that PATH string, splits it on `:` to get individual directories, and checks each one for the command. It builds candidate paths like `/usr/bin/ls` and tests them until it finds one that is executable. If nothing is found, it returns NULL.
+`find_path` uses `get_env` to retrieve the PATH string, splits it on `:`, and checks each directory for the command by building candidate paths and testing them with `access`. Returns the full executable path if found, or NULL if not.
+
+These functions are not yet connected to the main execution flow.
 
 ---
 
@@ -93,48 +101,48 @@ Handles finding where a command lives on the system.
 
 ### Interactive mode
 
-Run the shell:
+Run the shell after compiling:
 
 ```
 ./hsh
 ```
 
-A prompt appears:
+The prompt will appear:
 
 ```
 ($)
 ```
 
-From here, type any command:
+Commands must currently be entered as a full path:
 
 ```
-($) ls -la
+($) /bin/ls
 ($) /bin/echo hello
 ```
 
-Input is tokenised so `ls -la` becomes:
+The input is tokenised, so `/bin/ls -la` becomes:
 
 ```
-argv[0] = "ls"
+argv[0] = "/bin/ls"
 argv[1] = "-la"
 argv[2] = NULL
 ```
 
-The shell forks a child and runs the command with `execve`. The parent waits with `wait` until the child finishes, then the prompt appears again.
+The shell forks a child and runs the command with `execve`. The parent waits using `wait` until the child exits, then the prompt appears again.
 
 ### Non-interactive mode
 
-Commands can be piped in:
+Commands can also be piped in:
 
 ```
-echo "ls -l" | ./hsh
+echo "/bin/ls" | ./hsh
 ```
 
 No prompt is printed in this mode.
 
 ### Exiting
 
-Press **Ctrl + D** at the prompt to exit. The shell detects the end-of-file condition and exits with the status of the last command run.
+Press **Ctrl + D** at the prompt. The shell catches the end-of-file signal from `getline` and exits.
 
 ---
 
