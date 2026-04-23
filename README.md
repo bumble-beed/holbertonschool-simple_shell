@@ -156,7 +156,7 @@ Press **Ctrl + D** at the prompt. The shell catches the end-of-file signal from 
 
 ---
 
-![Shell Workflow](simple_shell_workflow.svg)
+![Simple Shell Workflow](simple_shell_workflow.svg)
 
 ## Authors
 
