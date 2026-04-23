@@ -19,7 +19,7 @@ Written by Shirleen Asre and Sean Sabino
 ## Compilation
 
 ```
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 main.c shell.c -o hsh
 ```
 
 ---
