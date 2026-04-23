@@ -1,4 +1,3 @@
-<img width="500" height="600" alt="simple_shell_workflow" src="https://github.com/user-attachments/assets/498aba43-2f0b-4b10-9c73-999a3b575c1f" /># Simple Shell
 
 ## Description
 
@@ -155,7 +154,9 @@ No prompt is printed in this mode.
 Press **Ctrl + D** at the prompt. The shell catches the end-of-file signal from `getline` and exits.
 
 ---
+<img width="800" height="1000" alt="simple_shell_workflow" src="https://github.com/user-attachments/assets/498aba43-2f0b-4b10-9c73-999a3b575c1f" /># Simple Shell
 
+---
 
 ## Authors
 
