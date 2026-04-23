@@ -37,6 +37,18 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 main.c shell.c -o hsh
 
 ---
 
+## Progress on the project tasks
+  
+  | Task | Requirement | Status | Notes |
+  |---|---|---|---|
+  | 0. README / man / AUTHORS | All three files at root | Done | `README.md`, `man_1_simple_shell`, `AUTHORS` present |
+  | 0.1 Simple shell 0.1 | Prompt, single-word command, EOF, errors | Done | Works in interactive and non-interactive mode |
+  | 0.2 Simple shell 0.2 | Handle command arguments | Done | Tokenised with `strtok` inside `main.c` |
+  | 0.3 Simple shell 0.3 | Use PATH; do not fork if command not found | Partial | `find_path()` exists in `path.c` but `main.c` still calls `execve(argv[0], …)` directly and forks every time |
+  | 0.4 Simple shell 0.4 | `exit` built-in | Not done |  |
+  | 1.0 Simple shell 1.0 | `env` built-in | Partial | Set up but not connected |
+  | Error format | `./hsh: 1: cmd: not found` (argv[0] + line number) | Not done |  |
+
 ## File Overview
 
 ### main.h
