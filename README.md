@@ -157,7 +157,6 @@ Press **Ctrl + D** at the prompt. The shell catches the end-of-file signal from 
 ---
 
 
-
 ## Authors
 
 * Shirleen Asre — https://github.com/bumble-beed
