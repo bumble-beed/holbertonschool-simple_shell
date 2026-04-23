@@ -1,4 +1,4 @@
-<img width="103" height="150" alt="simple_shell_workflow" src="https://github.com/user-attachments/assets/498aba43-2f0b-4b10-9c73-999a3b575c1f" /># Simple Shell
+<img width="500" height="600" alt="simple_shell_workflow" src="https://github.com/user-attachments/assets/498aba43-2f0b-4b10-9c73-999a3b575c1f" /># Simple Shell
 
 ## Description
 
