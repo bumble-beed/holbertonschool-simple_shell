@@ -71,6 +71,14 @@ int main(int ac, char **av, char **env)
 
 		if (child_pid == 0)
 		{
+			char *path;
+			path = find_path(argv[0]);
+			if (path == NULL)
+			{
+				/* command not found — print error, exit child */
+			}
+			execve(path, argv, env);
+		{
 			/* Use 'start' (the cleaned path), not 'line' */
 			if (execve(argv[0], argv, env) == -1)
 			{
