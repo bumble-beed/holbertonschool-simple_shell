@@ -83,19 +83,6 @@ int main(int ac, char **av, char **env)
 		{
 			wait(NULL);
 		}
-		{
-			/* Use 'start' (the cleaned path), not 'line' */
-			if (execve(argv[0], argv, env) == -1)
-			{
-				perror(av[0]);
-				free(line);
-				exit(1);
-			}
-		}
-		else
-		{
-			wait(NULL);
-		}
 	}
 	free(line);
 	return (0);
