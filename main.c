@@ -78,6 +78,7 @@ int main(int ac, char **av, char **env)
 				/* command not found — print error, exit child */
 			}
 			execve(path, argv, env);
+		}
 		{
 			/* Use 'start' (the cleaned path), not 'line' */
 			if (execve(argv[0], argv, env) == -1)
