@@ -79,6 +79,10 @@ int main(int ac, char **av, char **env)
 			}
 			execve(path, argv, env);
 		}
+		else
+		{
+			wait(NULL);
+		}
 		{
 			/* Use 'start' (the cleaned path), not 'line' */
 			if (execve(argv[0], argv, env) == -1)
