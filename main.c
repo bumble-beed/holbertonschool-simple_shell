@@ -76,7 +76,7 @@ int main(int ac, char **av, char **env)
 			if (path == NULL)
 			{
 				/* command not found — print error, exit child */
-				fprintf(stderr," %s: 1: %s: not found\n", av[0], argv[0]);
+				fprintf(stderr,"%s: 1: %s: not found\n", av[0], argv[0]);
 				free(line);
 				exit(127);
 			}
