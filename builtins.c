@@ -15,12 +15,13 @@ int handle_builtin(char **argv, char *line, int last_status)
 		free(line);
 		exit(last_status);
 	}
-	return (0);
 	if (strcmp(argv[0], "env") == 0)
 	{
 		int i;
+
 		for (i = 0; environ[i] != NULL; i++)
 			printf("%s\n", environ[i]);
 		return (1);
 	}
+	return (0);
 }
