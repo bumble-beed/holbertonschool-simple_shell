@@ -64,6 +64,14 @@ int main(int ac, char **av, char **env)
 			i++;
 			argv[i] = strtok(NULL, " ");
 		}
+		path = find_path(argv[0]);
+                if (path == NULL)
+		{
+		       	/* command not found — print error, exit child */
+			fprintf(stderr,"%s: 1: %s: not found\n", av[0], argv[0]);
+			last_status = 127;
+			continue;
+		}
 		child_pid = fork();
 		if (child_pid == -1)
 		{
