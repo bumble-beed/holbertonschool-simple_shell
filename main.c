@@ -83,12 +83,18 @@ int main(int ac, char **av, char **env)
 		if (child_pid == 0)
 		{
 			execve(path, argv, env);
+			perror(av[0]);
+			free(path);
+			free(line);
+			exit(1);
 		}
 		else
 		{
 			wait(&status);
 			if (WIFEXITED(status))
 				last_status = WEXITSTATUS(status);
+			if (path != argv[0])
+				free(path);
 		}
 	}
 	free(line);
