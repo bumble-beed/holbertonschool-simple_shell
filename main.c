@@ -82,14 +82,6 @@ int main(int ac, char **av, char **env)
 
 		if (child_pid == 0)
 		{
-			path = find_path(argv[0]);
-			if (path == NULL)
-			{
-				/* command not found — print error, exit child */
-				fprintf(stderr,"%s: 1: %s: not found\n", av[0], argv[0]);
-				free(line);
-				exit(127);
-			}
 			execve(path, argv, env);
 		}
 		else
