@@ -88,7 +88,7 @@ int main(int ac, char **av, char **env)
 		{
 			wait(&status);
 			if (WIFEXITED(status))
-				last_status = WEXITEDSTATUS(status);
+				last_status = WEXITSTATUS(status);
 		}
 	}
 	free(line);
