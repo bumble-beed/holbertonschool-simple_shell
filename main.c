@@ -14,6 +14,8 @@ int main(int ac, char **av, char **env)
 	char *argv[MAX_ARGS];
 	char *start;
 	char *path;
+	int status;
+	int last_status = 0;
 	int j;
 	int i;
 
@@ -84,9 +86,11 @@ int main(int ac, char **av, char **env)
 		}
 		else
 		{
-			wait(NULL);
+			wait(&status);
+			if (WIFEXITED(status))
+				last_status = WEXITEDSTATUS(status);
 		}
 	}
 	free(line);
-	return (0);
+	return (last_status);
 }
