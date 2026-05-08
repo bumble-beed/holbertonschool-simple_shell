@@ -64,6 +64,8 @@ int main(int ac, char **av, char **env)
 			i++;
 			argv[i] = strtok(NULL, " ");
 		}
+		if (handle_builtin(argv, line, last_status))
+			continue;
 		path = find_path(argv[0]);
                 if (path == NULL)
 		{
