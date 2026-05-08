@@ -32,7 +32,7 @@ int main(int ac, char **av, char **env)
 			if (isatty(STDIN_FILENO))
 				printf("\n");
 			free(line);
-			exit(0);
+			exit(last_status);
 		}
 
 		if (line[nread - 1] == '\n')
