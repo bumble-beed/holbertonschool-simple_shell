@@ -8,7 +8,7 @@
  *
  * Return: 1 if builtin was handled, 0 if not
  */
-int handle_builtin(char **argv, char *line, int last_status);
+int handle_builtin(char **argv, char *line, int last_status)
 {
 	if (strcmp(argv[0], "exit") == 0)
 	{
